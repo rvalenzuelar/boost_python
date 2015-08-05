@@ -3,10 +3,18 @@
 from distutils.core import setup
 from distutils.extension import Extension
 
+# boost_headers = '/home/raul/Github/boost_python'
+# qt_headers = '/home/raul/miniconda/pkgs/qt-4.8.6-3/include/QtCore'
+# qt_libs = '/home/raul/miniconda/pkgs/qt-4.8.6-3/lib'
+
+boost_headers = '/home/rvalenzuela/Github/boost_python'
+qt_headers = '/home/rvalenzuela/miniconda/pkgs/qt-4.8.6-3/include/QtCore'
+qt_libs = '/home/rvalenzuela/miniconda/pkgs/qt-4.8.6-3/lib'
+
 setup(name="DoradeModule",
 	ext_modules=[
 	Extension("Dorade",["dorademodule.cpp"],
-				include_dirs=['/home/raul/Github/boost_python','/home/raul/miniconda/pkgs/qt-4.8.6-3/include/QtCore'],
-				library_dirs=['/home/raul/miniconda/pkgs/qt-4.8.6-3/lib'],
+				include_dirs=[boost_headers, qt_headers],
+				library_dirs=[qt_libs],
 				libraries = ["boost_python","QtCore"])
 	])
