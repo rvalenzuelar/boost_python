@@ -132,6 +132,43 @@ QString Dorade::getRadarname()
 
 }
 
+float Dorade::getElevation(int& ray)
+{
+	if ((ray >= 0) and (ray<(sptr->num_rays))) {
+		return ryptr[ray].elevation;
+	} else {
+		return -999;
+	}
+
+}
+
+float* Dorade::getReflectivity(int& ray)
+{
+	if ((ray >= 0) and (ray<(sptr->num_rays))) {
+		return dptr[refIndex][ray].data;
+	} else {
+		return 0;
+	}
+}
+
+float* Dorade::getRadialVelocity(int& ray)
+{
+	if ((ray >= 0) and (ray<(sptr->num_rays))) {
+		return dptr[velIndex][ray].data ;
+	} else {
+		return 0;
+	}
+}
+
+int Dorade::getNumRays()
+{
+	return sptr->num_rays;
+}
+
+int Dorade::getNumGates()
+{
+	return cptr->total_gates;
+}
 
 asib_info* Dorade::getAircraftBlock(const int& ray)
 {

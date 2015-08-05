@@ -33,6 +33,11 @@ public:
 	void setFilename(const QString& newname);
 	
 	// Data Retrieval
+	float getElevation(int& ray);
+	float* getReflectivity(int& ray);
+	float* getRadialVelocity(int& ray);	
+	int getNumRays();
+	int getNumGates();	
 	asib_info* getAircraftBlock(const int& ray);
 	cfac_info* getCfacBlock();
 	ryib_info* getRyibBlock(const int& ray);
@@ -114,19 +119,3 @@ private:
 };
 
 #endif
-
-/********* Boost section **********/
-// #include <boost/python/module.hpp>
-// #include <boost/python/def.hpp>
-#include <boost/python.hpp>
-
-
-using namespace boost::python;
-
-BOOST_PYTHON_MODULE(Dorade)
-{
-	class_<Dorade>("Dorade")
-		.def("readSwpfile",&Dorade::readSwpfile);
-		// .def("setFilename",&Dorade::setFilename);
-}
-/********************************/
