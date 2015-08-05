@@ -127,6 +127,6 @@ BOOST_PYTHON_MODULE(Dorade)
 {
 	class_<Dorade>("Dorade")
 		.def("readSwpfile",&Dorade::readSwpfile);
-		.def("setFilename",&Dorade::setFilename);
+		// .def("setFilename",&Dorade::setFilename);
 }
 /********************************/
