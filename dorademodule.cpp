@@ -60,7 +60,7 @@ Dorade::Dorade(const QString& swpFilename)
 	sw_fld = "SW";
 
 	setFilename(swpFilename);
-
+	readSwpfile();
 }
 
 Dorade::~Dorade()

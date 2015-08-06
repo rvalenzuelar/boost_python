@@ -15,25 +15,43 @@
 #include <QString>
 #include "boost_converter.h"
 
-using namespace boost::python;
+namespace bp = boost::python;
+
 
 /*** wrapping functions ***/
 float getElevation(Dorade &foo, int x)
 {
-	float y = foo.getElevation(x);
-	return y;
+	return foo.getElevation(x);
 }
+
+bp::list getReflectivity(Dorade &foo, int ray_indx)
+{
+	if (ray_indx>=foo.getNumRays()){
+		bp::list a;
+		return a;
+	}
+
+	float* y = foo.getReflectivity(ray_indx);
+	bp::list a;
+	for (int gate=0; gate<foo.getNumGates(); gate++)
+	{
+		a.append(y[gate]);
+	}
+	return bp::list(a);
+	delete y;
+}
+
 
 BOOST_PYTHON_MODULE(Dorade)
 {
 
 	initializeConverters(); // included in boost_converter.h
 
-	class_<Dorade>("Dorade")
+	bp::class_<Dorade>("Dorade")
 		.def(init<const QString&>())
 		.def("getFilename", &Dorade::getFilename)
-		.def("readSwpfile",&Dorade::readSwpfile)
 		.def("getNumRays", &Dorade::getNumRays)
 		.def("getNumGates", &Dorade::getNumGates)
-		.def("getElevation", getElevation);
+		.def("getElevation", getElevation)
+		.def("getReflectivity", getReflectivity);
 }
