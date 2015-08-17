@@ -5,3 +5,8 @@ Have to add to .bashrc:
 ```
 export CPLUS_INCLUDE_PATH="$CPLUS_INCLUDE_PATH:/home/raul/miniconda/include"
 ```
+
+Build:
+$ python setup.py build
+
+
